@@ -38,6 +38,12 @@ def say_welcome(message):
     )
 
 
+@bot.message_handler(commands=["id"])
+def get_id(message):
+    logger.info(f'</code>@{message.from_user.username}<code> used /id')
+    bot.send_message(message.chat.id, f"user_id = {message.chat.id}")
+
+
 @bot.message_handler(func=lambda message: True)
 def echo(message):
     for t, resp in dialog.items():
