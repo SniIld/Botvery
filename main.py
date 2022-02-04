@@ -3,6 +3,7 @@
 import os
 import random
 
+from telebot import types
 from setup import bot, logger
 from webhook import app
 
@@ -10,11 +11,11 @@ from webhook import app
 dialog = {
     'hello': {
         'in': ['привет', 'hello', 'hi', 'privet', 'hey'],
-        'out': ['Приветствую', 'Здравствуйте', 'Привет!']
+        'out': ['Приветствую', 'Здравствуйте', 'Привет!', 'hello', 'hi', 'privet', 'hey']
     },
     'how r u': {
-        'in': ['как дела', 'как ты', 'how are you', 'дела', 'how is it going'],
-        'out': ['Хорошо', 'Отлично', 'Good. And how are u?']
+        'in': ['как дела', 'как ты', 'how are you'],
+        'out': ['Хорошо', 'Отлично', 'Good. And how are u?', 'Зависть от того какие у тебя дела']
     },
     'name': {
         'in': ['зовут', 'name', 'имя'],
@@ -36,6 +37,14 @@ def say_welcome(message):
         '<b>Hello! This is a telegram bot template written by <a href="https://github.com/otter18">otter18</a></b>',
         parse_mode='html'
     )
+
+
+@bot.message_handler(commands=['button'])
+def button_message(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = types.KeyboardButton("Кнопка")
+    markup.add(item1)
+    bot.send_message(message.chat.id, 'Выберите что вам надо', reply_markup=markup)
 
 
 @bot.message_handler(commands=["id"])
