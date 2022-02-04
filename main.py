@@ -51,6 +51,12 @@ def button_message(message):
 def message_reply(message):
     if message.text == "Кнопка":
         bot.send_message(message.chat.id, "Да")
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        item1 = types.KeyboardButton("Кнопка 2")
+        markup.add(item1)
+        bot.send_message(message.chat.id, 'Выберите что вам надо', reply_markup=markup)
+    elif message.text == "Кнопка 2":
+        bot.send_message(message.chat.id, 'Спасибо за прочтение статьи!')
 
 
 @bot.message_handler(commands=["id"])
