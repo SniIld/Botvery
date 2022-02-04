@@ -3,7 +3,6 @@
 import os
 import random
 
-from telebot import types
 from setup import bot, logger
 from webhook import app
 
