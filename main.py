@@ -38,9 +38,9 @@ dialog = {
 def say_welcome(message):
     # logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used /start or /help')
     keyboard = types.InlineKeyboardMarkup()
-    url_button = types.InlineKeyboardButton(text="Перейти к otter18", url="https://github.com/otter18")
+    url_button = types.InlineKeyboardButton(text="Написанный otter18", url="https://github.com/otter18")
     keyboard.add(url_button)
-    bot.send_message(message.chat.id, "Hello! This is a telegram bot template written by", reply_markup=keyboard)
+    bot.send_message(message.chat.id, "Привет! Это шаблон телеграмм бота", reply_markup=keyboard)
 
 
 GamesForTwo = ['Селестия', 'Шахматы', 'Звёздная империя', 'Остров сокровищ', 'Домино', 'История',
