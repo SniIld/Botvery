@@ -59,7 +59,6 @@ def stratGameSelection(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def query_handler(call):
-
     answer = ''
     if call.data == 'two player':
         answer = f'Botvery выбрал {random.choice(GamesForTwo)}'
@@ -95,3 +94,9 @@ if __name__ == '__main__':
         app.run()
     else:
         bot.infinity_polling()
+
+#   ---------------------------------------------ПЛАНЫ------------------------------------------------------
+#   1) Создать помощник английского
+#   2) Создать помощник физики
+#   3) Создать помощник математики
+#   4) Сделать вывод определенной информации, в определенное время
