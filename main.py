@@ -4,6 +4,7 @@ import os
 import random
 
 import telebot
+from telebot import types
 from setup import bot, logger
 from webhook import app
 
@@ -15,7 +16,7 @@ dialog = {
     },
     'how r u': {
         'in': ['как дела', 'как ты', 'how are you'],
-        'out': ['Хорошо', 'Отлично', 'Good. And how are u?', 'Зависть от того какие у тебя дела']
+        'out': ['Хорошо', 'Отлично', 'Good. And how are u?', 'Идеально', 'Все тип-топ']
     },
     'name': {
         'in': ['зовут', 'name', 'имя'],
@@ -27,20 +28,19 @@ dialog = {
     },
     'repetition': {
         'in': ['почему ты повторяешь', 'повторюха муха'],
-        'out': ['Что поделать', 'Вот такой я', 'Это создатель виноват', 'Спроси создателя']
+        'out': ['Что поделать?', 'Вот такой я', 'Это создатель виноват', 'Спроси создателя']
     }
 }
 
 
 # --------------- bot -------------------
-@bot.message_handler(commands=['help', 'start'])
+@bot.message_handler(commands=['help', 'info'])
 def say_welcome(message):
     # logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used /start or /help')
-    bot.send_message(
-        message.chat.id,
-        '<b>Hello! This is a telegram bot template written by <a href="https://github.com/otter18">otter18</a></b>',
-        parse_mode='html'
-    )
+    keyboard = types.InlineKeyboardMarkup()
+    url_button = types.InlineKeyboardButton(text="Перейти к otter18", url="https://github.com/otter18")
+    keyboard.add(url_button)
+    bot.send_message(message.chat.id, "Hello! This is a telegram bot template written by", reply_markup=keyboard)
 
 
 GamesForTwo = ['Селестия', 'Шахматы', 'Звёздная империя', 'Остров сокровищ', 'Домино', 'История',
