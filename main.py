@@ -24,6 +24,10 @@ dialog = {
             'Я бот шаблон, но ты можешь звать меня в свой проект',
             'Это секрет. Используй команду /help, чтобы узнать'
         ]
+    },
+    'repetition': {
+        'in': ['почему ты повторяешь', 'повторюха муха'],
+        'out': ['Что поделать', 'Вот такой я', 'Это создатель виноват', 'Спроси создателя']
     }
 }
 
@@ -31,7 +35,7 @@ dialog = {
 # --------------- bot -------------------
 @bot.message_handler(commands=['help', 'start'])
 def say_welcome(message):
-    logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used /start or /help')
+    # logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used /start or /help')
     bot.send_message(
         message.chat.id,
         '<b>Hello! This is a telegram bot template written by <a href="https://github.com/otter18">otter18</a></b>',
@@ -73,7 +77,7 @@ def query_handler(call):
 
 @bot.message_handler(commands=["id"])
 def get_id(message):
-    logger.info(f'</code>@{message.from_user.username}<code> used /id')
+    # logger.info(f'</code>@{message.from_user.username}<code> used /id')
     bot.send_message(message.chat.id, f"user_id = {message.chat.id}")
 
 
@@ -81,11 +85,11 @@ def get_id(message):
 def echo(message):
     for t, resp in dialog.items():
         if sum([e in message.text.lower() for e in resp['in']]):
-            logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used {t}:\n\n%s', message.text)
+            # logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used {t}:\n\n%s', message.text)
             bot.send_message(message.chat.id, random.choice(resp['out']))
             return
 
-    logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used echo:\n\n%s', message.text)
+    # logger.info(f'</code>@{message.from_user.username}<code> ({message.chat.id}) used echo:\n\n%s', message.text)
     bot.send_message(message.chat.id, message.text)
 
 
