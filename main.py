@@ -81,12 +81,6 @@ def get_id(message):
     bot.send_message(message.chat.id, f"user_id = {message.chat.id}")
 
 
-@bot.message_handler(content_types=['text'])
-def text(message):
-    textes = message.text.lower()
-    bot.edit_message_text(message.chat.id, text=f'{textes}?', message_id=message.message_id + 1)
-
-
 @bot.message_handler(func=lambda message: True)
 def echo(message):
     for t, resp in dialog.items():
