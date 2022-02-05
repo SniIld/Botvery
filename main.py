@@ -53,7 +53,23 @@ def stratGameSelection(message):
     markup = telebot.types.InlineKeyboardMarkup()
     markup.add(telebot.types.InlineKeyboardButton(text='Два', callback_data='two player'))
     markup.add(telebot.types.InlineKeyboardButton(text='Больше двух', callback_data='more two player'))
+    markup.add(telebot.types.InlineKeyboardButton(text='Выбрать кто первый', callback_data='choice player'))
     bot.send_message(message.chat.id, text="Сколько игроков будет играть?", reply_markup=markup)
+
+
+@bot.callback_query_handler(func=lambda call: True)
+def query_handler(call):
+
+    answer = ''
+    if call.data == 'two player':
+        answer = f'Botvery выбрал {random.choice(GamesForTwo)}'
+    elif call.data == 'more two player':
+        answer = f'Botvery выбрал {random.choice(GameMoreTwo)}'
+    elif call.data == 'choice player':
+        answer = f'Botvery выбрал игрока {random.choice(Player)}'
+
+    bot.send_message(call.message.chat.id, answer)
+    bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
 
 @bot.message_handler(commands=["id"])
