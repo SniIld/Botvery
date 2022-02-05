@@ -3,6 +3,7 @@
 import os
 import random
 
+import telebot
 from setup import bot, logger
 from webhook import app
 
@@ -38,15 +39,21 @@ def say_welcome(message):
     )
 
 
-gameLst = ['Семь Чудес', 'Хадара', 'Селестия', 'Остров Котов', 'Шахматы', 'Звёздная империя', 'Лобатряс', 'Азул квадратный',
-           'Остров сокровищ', 'Финка', 'Корова', 'Бликальчики', 'Черепашки', 'Мемология', 'Уно', 'Вампирчики', 'Домино',
-           'Вантед', 'Билет на поезд', 'Пандемия', 'Средневековая академия', 'Атлантида', 'Азул ромбический',
-           'Приключение глубоким морем', 'Грядка', 'Нормы', 'История', 'Черепашки']
+GamesForTwo = ['Селестия', 'Шахматы', 'Звёздная империя', 'Остров сокровищ', 'Домино', 'История',
+               'Глубоководное приключение']
+GameMoreTwo = ['Семь Чудес', 'Хадара', 'Селестия', 'Остров Котов', 'Лобатряс', 'Азул квадратный',
+               'Остров сокровищ', 'Финка', 'Корова', 'Бликальчики', 'Черепашки', 'Мемология', 'Уно', 'Вампирчики',
+               'Вантед', 'Билет на поезд', 'Пандемия', 'Средневековая академия', 'Атлантида', 'Азул ромбический',
+               'Глубоководное приключение', 'Грядка', 'Нормы', 'История']
+Player = ['Папа', 'Мама', 'Кирилл', 'Никита']
 
 
 @bot.message_handler(commands=['game'])
-def gameSelection(message):
-    bot.send_message(message.chat.id, f'Botvery выбрал {random.choice(gameLst)}')
+def stratGameSelection(message):
+    markup = telebot.types.InlineKeyboardMarkup()
+    markup.add(telebot.types.InlineKeyboardButton(text='Два', callback_data='two player'))
+    markup.add(telebot.types.InlineKeyboardButton(text='Больше двух', callback_data='more two player'))
+    bot.send_message(message.chat.id, text="Сколько игроков будет играть?", reply_markup=markup)
 
 
 @bot.message_handler(commands=["id"])
