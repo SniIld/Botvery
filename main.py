@@ -78,7 +78,7 @@ def query_handler(call):
 @bot.message_handler(commands=['tense'])
 def sendingPhotoTense(message):
     bot.send_message(message.chat.id,
-                     '<b><a href="https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg">Ссылка на фото</a></b>\nhttps://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg',
+                     '<b><a href="https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg">Ссылка на фото</a></b>',
                      parse_mode='html')
 
 
