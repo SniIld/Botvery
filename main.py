@@ -86,13 +86,15 @@ def subjectSelection(message):
 
 @bot.callback_query_handler(func=lambda call: True)
 def answerSubjectSelection(call):
+    answer = ''
     if call.data == 'English':
         photo = open('/Изображения/EnglishTense.jpg', 'rb')
         bot.send_photo(call.message.chat.id, photo)
     elif call.data == 'Math':
-        bot.send_message(call.message.chat.id, 'Это Математика')
+        answer = 'Это Математика'
     elif call.data == 'Physics':
-        bot.send_message(call.message.chat.id, 'Это Физика')
+        answer = 'Это Физика'
+    bot.send_message(call.message.chat.id, answer)
 
 
 @bot.message_handler(commands=["id"])
