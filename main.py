@@ -81,7 +81,7 @@ def subjectSelection(message):
     markup.add(telebot.types.InlineKeyboardButton(text='Англ', callback_data='English'))
     markup.add(telebot.types.InlineKeyboardButton(text='Математика', callback_data='Math'))
     markup.add(telebot.types.InlineKeyboardButton(text='Физика', callback_data='Physics'))
-    bot.send_message(message.chat.id, text='Выберите школьный предмет:')
+    bot.send_message(message.chat.id, text='Выберите школьный предмет:', reply_markup=markup)
 
 
 @bot.callback_query_handler(func=lambda call: True)
