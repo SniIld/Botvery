@@ -44,11 +44,11 @@ def say_welcome(message):
 
 
 GamesForTwo = ['Селестия', 'Шахматы', 'Звёздная империя', 'Остров сокровищ', 'Домино', 'История',
-               'Глубоководное приключение']
+               'Глубоководное приключение', 'Микро-Макро']
 GameMoreTwo = ['Семь Чудес', 'Хадара', 'Селестия', 'Остров Котов', 'Лобатряс', 'Азул квадратный',
                'Остров сокровищ', 'Финка', 'Корова', 'Бликальчики', 'Черепашки', 'Мемология', 'Уно', 'Вампирчики',
                'Вантед', 'Билет на поезд', 'Пандемия', 'Средневековая академия', 'Атлантида', 'Азул ромбический',
-               'Глубоководное приключение', 'Грядка', 'Нормы', 'История']
+               'Глубоководное приключение', 'Грядка', 'Нормы', 'История', 'Микро-Макро']
 Player = ['Папа', 'Мама', 'Кирилл', 'Никита']
 
 
@@ -73,6 +73,26 @@ def query_handler(call):
 
     bot.send_message(call.message.chat.id, answer)
     bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
+
+
+@bot.message_handler(commands=['subject'])
+def subjectSelection(message):
+    markup = telebot.types.InlineKeyboardMarkup()
+    markup.add(telebot.types.InlineKeyboardButton(text='Англ', callback_data='English'))
+    markup.add(telebot.types.InlineKeyboardButton(text='Математика', callback_data='Math'))
+    markup.add(telebot.types.InlineKeyboardButton(text='Физика', callback_data='Physics'))
+    bot.send_message(message.chat.id, text='Выберите школьный предмет:')
+
+
+@bot.callback_query_handler(func=lambda call: True)
+def answerSubjectSelection(call):
+    if call.data == 'English':
+        photo = open('/Изображения/EnglishTense.jpg', 'rb')
+        bot.send_photo(call.message.chat.id, photo)
+    elif call.data == 'Math':
+        bot.send_message(call.message.chat.id, 'Это Математика')
+    elif call.data == 'Physics':
+        bot.send_message(call.message.chat.id, 'Это Физика')
 
 
 @bot.message_handler(commands=["id"])
