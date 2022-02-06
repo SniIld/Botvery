@@ -88,8 +88,7 @@ def subjectSelection(message):
 def answerSubjectSelection(call):
     answer = ''
     if call.data == 'English':
-        photo = open('/Изображения/EnglishTense.jpg', 'rb')
-        bot.send_photo(call.message.chat.id, photo)
+        answer = 'https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg'
     elif call.data == 'Math':
         answer = 'Это Математика'
     elif call.data == 'Physics':
