@@ -77,6 +77,7 @@ def query_handler(call):
 
 @bot.message_handler(commands=['subject'])
 def subjectSelection(message):
+    bot.send_message(message.chat.id, 'https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg')
     markup = telebot.types.InlineKeyboardMarkup()
     markup.add(telebot.types.InlineKeyboardButton(text='Англ', callback_data='English'))
     markup.add(telebot.types.InlineKeyboardButton(text='Математика', callback_data='Math'))
