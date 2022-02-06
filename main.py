@@ -75,11 +75,16 @@ def query_handler(call):
     bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
 
+@bot.message_handler(commands=['tense'])
+def sendingPhotoTense(message):
+    bot.send_message(message.chat.id,
+                     '<b><a href="https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg">Ссылка на фото</a></b>\nhttps://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg',
+                     parse_mode='html')
+
+
 @bot.message_handler(commands=['subject'])
 def subjectSelection(message):
-    bot.send_message(message.chat.id, 'https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg')
     markup = telebot.types.InlineKeyboardMarkup()
-    markup.add(telebot.types.InlineKeyboardButton(text='Англ', callback_data='English'))
     markup.add(telebot.types.InlineKeyboardButton(text='Математика', callback_data='Math'))
     markup.add(telebot.types.InlineKeyboardButton(text='Физика', callback_data='Physics'))
     bot.send_message(message.chat.id, text='Выберите школьный предмет:', reply_markup=markup)
@@ -88,9 +93,7 @@ def subjectSelection(message):
 @bot.callback_query_handler(func=lambda call: True)
 def answerSubjectSelection(call):
     answer = ''
-    if call.data == 'English':
-        answer = 'https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg'
-    elif call.data == 'Math':
+    if call.data == 'Math':
         answer = 'Это Математика'
     elif call.data == 'Physics':
         answer = 'Это Физика'
