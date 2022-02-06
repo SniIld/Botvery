@@ -106,7 +106,7 @@ def get_id(message):
     bot.send_message(message.chat.id, f"user_id = {message.chat.id}")
 
 
-@bot.message_handler(func=lambda message: True, content_types=['audio', 'video', 'document', 'location', 'contact', 'sticker'])
+@bot.message_handler(func=lambda message: True, content_types=['audio', 'video', 'document', 'location', 'contact', 'sticker', 'photo'])
 def default_command(message):
     bot.reply_to(message, "Это обработчик команд по умолчанию.")
 
