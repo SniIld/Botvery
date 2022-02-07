@@ -77,9 +77,54 @@ def query_handler(call):
 
 @bot.message_handler(commands=['tense'])
 def sendingPhotoTense(message):
-    bot.send_message(message.chat.id,
-                     '<b><a href="https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg">Ссылка на фото</a></b>',
-                     parse_mode='html')
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = types.KeyboardButton("Present Simple")
+    item2 = types.KeyboardButton("Past Simple")
+    item3 = types.KeyboardButton("Future Simple")
+    item4 = types.KeyboardButton("Present Continuous")
+    item5 = types.KeyboardButton("Past Continuous")
+    item6 = types.KeyboardButton("Future Continuous")
+    item7 = types.KeyboardButton("Present Perfect")
+    item8 = types.KeyboardButton("Past Perfect")
+    item9 = types.KeyboardButton("Future Perfect")
+    item10 = types.KeyboardButton("Present Perfect Continuous")
+    item11 = types.KeyboardButton("Past Perfect Continuous")
+    item12 = types.KeyboardButton("Future Perfect Continuous")
+    markup.add(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12)
+    bot.send_message(message.chat.id, 'Выберите время', reply_markup=markup)
+
+
+@bot.message_handler(content_types='text')
+def message_reply(message):
+    if message.text == "Present Simple":
+        bot.send_message(message.chat.id, "it is Present Simple")
+    elif message.text == 'Past Simple':
+        bot.send_message(message.chat.id, "it is Past Simple")
+    elif message.text == 'Future Simple':
+        bot.send_message(message.chat.id, "it is Future Simple")
+    elif message.text == 'Present Continuous':
+        bot.send_message(message.chat.id, "it is Present Continuous")
+    elif message.text == 'Past Continuous':
+        bot.send_message(message.chat.id, "it is Past Continuous")
+    elif message.text == 'Future Continuous':
+        bot.send_message(message.chat.id, "it is Future Continuous")
+    elif message.text == 'Present Perfect':
+        bot.send_message(message.chat.id, "it is Present Perfect")
+    elif message.text == 'Past Perfect':
+        bot.send_message(message.chat.id, "it is Past Perfect")
+    elif message.text == 'Future Perfect':
+        bot.send_message(message.chat.id, "it is Future Perfect")
+    elif message.text == 'Present Perfect Continuous':
+        bot.send_message(message.chat.id, "it is Present Perfect Continuous")
+    elif message.text == 'Past Perfect Continuous':
+        bot.send_message(message.chat.id, "it is Past Perfect Continuous")
+    elif message.text == 'Future Perfect Continuous':
+        bot.send_message(message.chat.id, "it is Future Perfect Continuous")
+    elif message.text == 'Photo':
+        bot.send_message(message.chat.id,
+                         '<b><a href="https://i.postimg.cc/gj6fhTjB/photo-2022-02-05-20-46-24.jpg">Ссылка на фото</a></b>',
+                         parse_mode='html')
+    # bot.edit_message_reply_markup(message.chat.id, message.message_id)
 
 
 @bot.message_handler(commands=['subject'])
