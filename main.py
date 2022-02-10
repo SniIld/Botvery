@@ -75,11 +75,6 @@ def query_handler(call):
     bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
 
-@bot.message_handler(commands=['kujg'])
-def akfgaif(message):
-    bot.send_message(message.chat.id, 'https://i.imgur.com/e0bIDT8.png')
-
-
 @bot.message_handler(commands=['subject'])
 def subjectSelection(message):
     markup = telebot.types.InlineKeyboardMarkup()
