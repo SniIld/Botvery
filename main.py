@@ -75,24 +75,6 @@ def query_handler(call):
     bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
 
-@bot.message_handler(commands=['subject'])
-def subjectSelection(message):
-    markup = telebot.types.InlineKeyboardMarkup()
-    markup.add(telebot.types.InlineKeyboardButton(text='Математика', callback_data='Math'))
-    markup.add(telebot.types.InlineKeyboardButton(text='Физика', callback_data='Physics'))
-    bot.send_message(message.chat.id, text='Выберите школьный предмет:', reply_markup=markup)
-
-
-@bot.callback_query_handler(func=lambda call: True)
-def answerSubjectSelection(call):
-    answer = ''
-    if call.data == 'Math':
-        answer = 'Это Математика'
-    elif call.data == 'Physics':
-        answer = 'Это Физика'
-    bot.send_message(call.message.chat.id, answer)
-
-
 @bot.message_handler(commands=["id"])
 def get_id(message):
     # logger.info(f'</code>@{message.from_user.username}<code> used /id')
